@@ -37,6 +37,7 @@ class LeaderboardControllerTests {
         assertEquals(third, res[2])
     }
 
+    /* Alte Testmethode, die nach der Änderung der Sortierung nicht mehr gültig ist. 
     @Test
     fun test_getLeaderboard_sameScore_CorrectIdSorting() {
         val first = GameResult(1, "first", 20, 20.0)
@@ -53,5 +54,25 @@ class LeaderboardControllerTests {
         assertEquals(second, res[1])
         assertEquals(third, res[2])
     }
+    */
+
+    @Test
+    fun test_getLeaderboard_sameScore_CorrectTimeSorting() {
+        val first = GameResult(1, "first", 20, 10.0) // Bessere Zeit, sollte vor den anderen beiden liegen
+        val second = GameResult(2, "second", 20, 15.0) 
+        val third = GameResult(3, "third", 20, 20.0) //muss letztes Element sein, da schlechteste Zeit
+
+        whenever(mockedService.getGameResults()).thenReturn(listOf(second, first, third))
+
+        val res: List<GameResult> = controller.getLeaderboard()
+
+        verify(mockedService).getGameResults()
+        assertEquals(3, res.size)
+        assertEquals(first, res[0])
+        assertEquals(second, res[1])
+        assertEquals(third, res[2])
+
+    }
+
 
 }
