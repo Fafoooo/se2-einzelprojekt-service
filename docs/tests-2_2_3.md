@@ -26,3 +26,22 @@ Die bestehenden LeaderboardControllerTests haben nicht mehr kompiliert, weil:
 | at.aau.serg.services | 73% | 75% |
 | at.aau.serg.models | 65% | n/a |
 
+
+## Öffnen des Tests
+`open build/reports/jacoco/test/html/index.html`
+
+## GameResultServiceTests erweitert
+
+### Änderung
+- 2 neue Tests für `deleteGameResult` hinzugefügt:
+  - `test_deleteGameResult_existingId_removesElement` → prüft ob Element entfernt wird (assertTrue)
+  - `test_deleteGameResult_nonexistentId_returnsFalse` → prüft ob false zurückkommt wenn ID nicht existiert (assertFalse)
+- Neue Imports: `assertTrue`, `assertFalse`
+
+### Jacoco Ergebnis nach Änderung
+| Package | Instructions | Branches |
+|---|---|---|
+| at.aau.serg | 57% | 42% |
+| at.aau.serg.controllers | 39% | 16% |
+| at.aau.serg.models | 65% | n/a |
+| at.aau.serg.services | 100% | 100% |

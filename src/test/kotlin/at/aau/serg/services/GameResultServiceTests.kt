@@ -4,7 +4,9 @@ import at.aau.serg.models.GameResult
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse //für assertFalse 
 import kotlin.test.assertNull
+import kotlin.test.assertTrue // für assertTrue
 
 class GameResultServiceTests {
 
@@ -70,6 +72,30 @@ class GameResultServiceTests {
 
         assertEquals(gameResult2, res[1])
         assertEquals(2, res[1].id)
+    }
+
+    @Test
+    fun test_deleteGameResult_existingId_removesElement() {
+        val gameResult = GameResult(0, "player1", 17, 15.3)
+        service.addGameResult(gameResult)
+
+        // delete gibt true zurück wenn Element gefunden und entfernt wurde
+        val deleted = service.deleteGameResult(1)
+
+        assertTrue(deleted)
+        assertEquals(0, service.getGameResults().size)
+    }
+
+    @Test
+    fun test_deleteGameResult_nonexistentId_returnsFalse() {
+        val gameResult = GameResult(0, "player1", 17, 15.3)
+        service.addGameResult(gameResult)
+
+        // delete gibt false zurück wenn ID nicht existiert
+        val deleted = service.deleteGameResult(99)
+
+        assertFalse(deleted)
+        assertEquals(1, service.getGameResults().size)
     }
 
 }
