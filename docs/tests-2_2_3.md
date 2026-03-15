@@ -45,3 +45,24 @@ Die bestehenden LeaderboardControllerTests haben nicht mehr kompiliert, weil:
 | at.aau.serg.controllers | 39% | 16% |
 | at.aau.serg.models | 65% | n/a |
 | at.aau.serg.services | 100% | 100% |
+
+## LeaderboardControllerTests erweitert
+
+### Änderung
+- 7 neue Tests für den `rank` Parameter hinzugefügt:
+  - `test_getLeaderboard_emptyList` → leere Liste, kein rank
+  - `test_getLeaderboard_withRank_returnsWindow` → rank in der Mitte, Fenster ±3
+  - `test_getLeaderboard_withRank1_windowAtTop` → rank 1, Fenster am oberen Rand
+  - `test_getLeaderboard_withLastRank_windowAtBottom` → letzter rank, Fenster am unteren Rand
+  - `test_getLeaderboard_rankZero_returns400` → rank 0 → HTTP 400
+  - `test_getLeaderboard_rankNegative_returns400` → rank -1 → HTTP 400
+  - `test_getLeaderboard_rankTooLarge_returns400` → rank größer als Spieleranzahl → HTTP 400
+- Neuer Import: `HttpStatus` für Statuscode-Prüfung
+
+### Jacoco Ergebnis nach Änderung
+| Package | Instructions | Branches |
+|---|---|---|
+| at.aau.serg | 62% | 55% |
+| at.aau.serg.controllers | 76% | 100% |
+| at.aau.serg.models | 65% | n/a |
+| at.aau.serg.services | 100% | 100% |
