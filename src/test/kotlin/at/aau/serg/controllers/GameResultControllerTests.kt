@@ -52,4 +52,27 @@ class GameResultControllerTests {
         
         verify(mockedService).addGameResult(gameResult) // prüft ob addGameResult am Service aufgerufen wurde
     }
+
+    @Test
+    fun test_getAllGameResults_returnsList() {
+        val results = listOf(
+            GameResult(1, "player1", 100, 15.0),
+            GameResult(2, "player2", 200, 10.0)
+        )
+        whenever(mockedService.getGameResults()).thenReturn(results)
+
+        val res = controller.getAllGameResults()
+
+        verify(mockedService).getGameResults()
+        assertEquals(2, res.size)
+        assertEquals(results, res) // gleiche Liste zurückgegeben
+    }
+
+    @Test
+    fun test_deleteGameResult_callsService() {
+        controller.deleteGameResult(1)
+
+        // prüft ob deleteGameResult am Service aufgerufen wurde
+        verify(mockedService).deleteGameResult(1)
+    }
 }

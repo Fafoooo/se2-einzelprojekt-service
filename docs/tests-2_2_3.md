@@ -27,9 +27,6 @@ Die bestehenden LeaderboardControllerTests haben nicht mehr kompiliert, weil:
 | at.aau.serg.models | 65% | n/a |
 
 
-## Öffnen des Tests
-`open build/reports/jacoco/test/html/index.html`
-
 ## GameResultServiceTests erweitert
 
 ### Änderung
@@ -66,3 +63,27 @@ Die bestehenden LeaderboardControllerTests haben nicht mehr kompiliert, weil:
 | at.aau.serg.controllers | 76% | 100% |
 | at.aau.serg.models | 65% | n/a |
 | at.aau.serg.services | 100% | 100% |
+
+## GameResultControllerTests erstellt
+
+### Änderung
+- Neue Testdatei `GameResultControllerTests.kt` erstellt
+- 5 Tests hinzugefügt:
+  - `test_getGameResult_existingId_returnsResult` → gibt GameResult zurück
+  - `test_getGameResult_nonExistingId_returnsNull` → gibt null zurück wenn ID nicht existiert
+  - `test_addGameResult_callsService` → prüft ob Service aufgerufen wird
+  - `test_getAllGameResults_returnsList` → gibt Liste aller Ergebnisse zurück
+  - `test_deleteGameResult_callsService` → prüft ob delete am Service aufgerufen wird
+
+### Jacoco Endergebnis
+| Package | Instructions | Branches |
+|---|---|---|
+| at.aau.serg.controllers | **100%** | **100%** |
+| at.aau.serg.services | **100%** | **100%** |
+| at.aau.serg.models | 65% | n/a |
+
+100% Coverage in allen drei geforderten Klassen erreicht.
+
+
+## Öffnen des Tests
+`open build/reports/jacoco/test/html/index.html`
